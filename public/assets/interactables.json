@@ -1,0 +1,12 @@
+[
+  {
+    "imageKey": "player-idle",
+    "imageUrl": "assets/player-idle.png",
+    "scale": 1,
+    "xCoordinate": 150,
+
+    "title": "Title",
+    "description": "Description",
+    "sourceUrl": "https://example.com"
+  }
+]

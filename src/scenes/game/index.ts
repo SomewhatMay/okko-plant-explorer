@@ -2,6 +2,7 @@ import { GameObjects, Physics, Scene } from "phaser";
 import { GrassContainer } from "./grass-container";
 import { Player } from "./player";
 import { screenSize } from "../../main";
+import { Interactable, InteractableInfo } from "./interactable";
 
 export class Game extends Scene {
   worldGroup: Physics.Arcade.StaticGroup;
@@ -12,9 +13,37 @@ export class Game extends Scene {
   playerSpeed = 10; // pixels per 100ms
   player: GameObjects.Sprite;
   wasWalking = false;
+  worldPos = 0;
+
+  interactableInfo: InteractableInfo[] = [];
 
   constructor() {
-    super("Game");
+    super({
+      key: "Game",
+      pack: {
+        files: [
+          {
+            type: "json",
+            key: "interactables",
+            url: "assets/interactables.json",
+          },
+        ],
+      },
+    });
+  }
+
+  preload() {
+    this.load.json("interactables", "assets/interactables.json");
+    this.interactableInfo = this.cache.json.get(
+      "interactables"
+    ) as InteractableInfo[];
+
+    this.interactableInfo.forEach((info) => {
+      this.load.image(info.imageKey, info.imageUrl);
+      console.log(
+        "Loading image key " + info.imageKey + " with url " + info.imageUrl
+      );
+    });
   }
 
   create() {
@@ -45,9 +74,15 @@ export class Game extends Scene {
       frameRate: this.playerSpeed * 2.4,
       repeat: -1,
     });
+
+    this.interactableInfo.forEach((info) => {
+      new Interactable(this, this.worldGroup, info);
+    });
   }
 
   moveWorld(offset: number) {
+    this.worldPos += offset;
+
     this.worldGroup.getChildren().forEach((_child) => {
       const child = _child as GameObjects.Image;
       child.setPosition(child.x + offset, child.y);
@@ -55,6 +90,7 @@ export class Game extends Scene {
   }
 
   update(time: number, delta: number): void {
+    console.log();
     if (this.cursors) {
       if (this.cursors.left?.isDown) {
         this.player.setOrigin(0.53, 1);

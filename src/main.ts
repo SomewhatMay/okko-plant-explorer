@@ -1,4 +1,4 @@
-import { Boot } from "./example-scenes/Boot";
+import { Boot } from "./scenes/boot";
 // import { Game as MainGame } from "./example-scenes/Game";
 // import { GameOver } from "./example-scenes/GameOver";
 // import { MainMenu } from "./example-scenes/MainMenu";

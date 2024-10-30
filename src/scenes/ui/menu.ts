@@ -1,6 +1,7 @@
 import { Scene } from "phaser";
 import { UIContainer } from "./ui-container";
 import { screenSize } from "../../constants";
+import { onChanges } from "../../util";
 
 export class Menu extends UIContainer {
   static readonly WIDTH = 200;
@@ -11,6 +12,8 @@ export class Menu extends UIContainer {
     super(scene, screenSize.x / 2 - Menu.WIDTH / 2, 40);
     this.draw();
     this.setVisible(false);
+
+    this.subscribeToEvents();
   }
 
   draw() {
@@ -29,6 +32,12 @@ export class Menu extends UIContainer {
     this.drawAction("[E] Observe", 0);
     this.drawAction("[F] Touch", 1);
     this.drawAction("[Q] Smell", 2);
+  }
+
+  subscribeToEvents() {
+    onChanges(this.scene, "target", (_: any, key: string, value: string) => {
+      this.setVisible(value !== "");
+    });
   }
 
   drawAction(title: string, n: number) {

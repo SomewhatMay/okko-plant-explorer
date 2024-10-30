@@ -21,16 +21,16 @@ export class InteractionListener {
       }
     });
 
+    const prevTarget = this.scene.registry.get("target");
     if (closest && distance < this.maxDistance) {
-      // if this is a new target, we reset the action
-      if (
-        this.scene.data.get("target") !== (closest as Interactable).info.title
-      )
-        this.scene.data.set("action", "");
-
-      this.scene.data.set("target", (closest as Interactable).info.title);
-    } else {
-      this.scene.data.set("target", "");
+      if (prevTarget !== (closest as Interactable).info.title) {
+        // if this is a new target, we reset the action
+        this.scene.registry.set("action", "");
+        this.scene.registry.set("target", (closest as Interactable).info.title);
+      }
+    } else if (prevTarget !== "") {
+      this.scene.registry.set("target", "");
+      this.scene.registry.set("action", "");
     }
   }
 }

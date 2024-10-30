@@ -54,9 +54,9 @@ export class Game extends Scene {
 
   create() {
     // Initialize Data
-    this.data.set("target", "");
-    this.data.set("action", "");
-    this.data.set(
+    this.registry.set("target", "");
+    this.registry.set("action", "");
+    this.registry.set(
       "interactables",
       JSON.parse(JSON.stringify(this.interactableInfo)) // Storing a copy of the data so we can mutate it
     );

@@ -2,13 +2,14 @@ import { GameObjects, Scene } from "phaser";
 import { screenSize } from "../../constants";
 import { GrassContainer } from "./grass-container";
 import { Mover } from "./mover";
+import { Game as MainGame } from "./index";
 
 export class Player {
   sprite: GameObjects.Sprite;
   wasWalking = false;
 
   constructor(
-    scene: Scene,
+    private scene: MainGame,
     private cursors: Phaser.Types.Input.Keyboard.CursorKeys | undefined
   ) {
     this.sprite = scene.add
@@ -40,7 +41,7 @@ export class Player {
 
   update(_: number, __: number): void {
     if (this.cursors) {
-      if (this.cursors.left?.isDown) {
+      if (this.cursors.left?.isDown || this.scene.aKey.isDown) {
         this.sprite.setOrigin(0.53, 1);
         this.sprite.flipX = true;
 
@@ -48,7 +49,7 @@ export class Player {
           this.sprite.play("run");
           this.wasWalking = true;
         }
-      } else if (this.cursors.right?.isDown) {
+      } else if (this.cursors.right?.isDown || this.scene.dKey.isDown) {
         this.sprite.setOrigin(0.47, 1);
         this.sprite.flipX = false;
 

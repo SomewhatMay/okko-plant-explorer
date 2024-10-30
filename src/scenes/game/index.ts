@@ -6,11 +6,20 @@ import { InteractionListener } from "./interaction-listener";
 import { Mover } from "./mover";
 import { UI } from "../ui";
 
+type CursorKeys = Phaser.Types.Input.Keyboard.CursorKeys;
+type Key = Phaser.Input.Keyboard.Key;
+
 export class Game extends Scene {
   worldGroup: Physics.Arcade.StaticGroup;
   background: GameObjects.Image;
   grassContainer: GrassContainer;
-  cursors: Phaser.Types.Input.Keyboard.CursorKeys | undefined;
+  cursors: CursorKeys | undefined;
+
+  movingLeft: boolean;
+  movingRight: boolean;
+
+  aKey: Key;
+  dKey: Key;
 
   player: Player;
   mover: Mover;
@@ -65,8 +74,19 @@ export class Game extends Scene {
     this.grassContainer = new GrassContainer(this, this.worldGroup);
     this.grassContainer.populateGrass(100);
 
-    this.cursors = this.input.keyboard?.createCursorKeys();
+    if (this.input.keyboard) {
+      this.cursors = this.input.keyboard.createCursorKeys();
+      this.aKey = this.input.keyboard.addKey("A");
+      this.dKey = this.input.keyboard.addKey("D");
+    }
+    // this.input.keyboard?.addKeys(
+    //   {up:Phaser.Input.Keyboard.KeyCodes.W,
+    //     down:Phaser.Input.Keyboard.KeyCodes.S,
+    //     left:Phaser.Input.Keyboard.KeyCodes.A,
+    //     right:Phaser.Input.Keyboard.KeyCodes.D});
 
+        
+    this.cursors = this.input.keyboard?.createCursorKeys();
     this.interactableInfo.forEach((info) => {
       this.interactables.push(new Interactable(this, this.worldGroup, info));
     });

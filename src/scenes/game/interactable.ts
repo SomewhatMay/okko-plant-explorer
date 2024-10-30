@@ -21,7 +21,7 @@ export class Interactable {
   constructor(
     private scene: Scene,
     private worldGroup: Physics.Arcade.StaticGroup,
-    private info: InteractableInfo
+    public info: InteractableInfo
   ) {
     this.object = this.scene.add
       .image(
@@ -41,6 +41,7 @@ export class Interactable {
   /**
    * Calculates the distance from the center
    * of the screen to the interactable
+   * *negative range possible!*
    */
   getDistance() {
     return this.getX() - screenSize.x / 2;

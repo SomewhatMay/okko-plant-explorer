@@ -2,6 +2,7 @@ import { GameObjects, Physics, Scene } from "phaser";
 import { GrassContainer } from "./grass-container";
 import { Player } from "./player";
 import { Interactable, InteractableInfo } from "./interactable";
+import { InteractionListener } from "./interaction-listener";
 import { Mover } from "./mover";
 import { UI } from "../ui";
 
@@ -16,6 +17,7 @@ export class Game extends Scene {
 
   ui: UI;
 
+  interactionListener: InteractionListener;
   interactableInfo: InteractableInfo[] = [];
   interactables: Interactable[] = [];
 
@@ -73,11 +75,17 @@ export class Game extends Scene {
     this.mover = new Mover(this.worldGroup, this.cursors);
 
     this.ui = new UI(this);
+
+    this.interactionListener = new InteractionListener(
+      this,
+      this.interactables
+    );
   }
 
   update(_: number, delta: number): void {
     this.player.update(_, delta);
     this.mover.update(_, delta);
     this.ui.update(_, delta);
+    this.interactionListener.update();
   }
 }

@@ -1,5 +1,5 @@
 import { GameObjects, Physics, Scene } from "phaser";
-import { screenSize } from "../../main";
+import { screenSize } from "../../constants";
 import { Math as pMath } from "phaser";
 const { Vector2 } = pMath;
 

@@ -1,5 +1,5 @@
 import { GameObjects, Scene } from "phaser";
-import { screenSize } from "../../main";
+import { screenSize } from "../../constants";
 import { GrassContainer } from "./grass-container";
 import { Mover } from "./mover";
 

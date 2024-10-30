@@ -6,10 +6,7 @@ import { Boot } from "./scenes/boot";
 import { Game as MainGame } from "./scenes/game/";
 
 import { Game, Types } from "phaser";
-import { Math as pMath } from "phaser";
-const { Vector2 } = pMath;
-
-export const screenSize = new Vector2(1920, 1080);
+import { screenSize } from "./constants";
 
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig

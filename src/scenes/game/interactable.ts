@@ -1,5 +1,5 @@
 import { GameObjects, Physics, Scene } from "phaser";
-import { screenSize } from "../../main";
+import { screenSize } from "../../constants";
 import { GrassContainer } from "./grass-container";
 
 export type InteractableInfo = {
@@ -11,6 +11,8 @@ export type InteractableInfo = {
   title: string;
   description: string;
   sourceUrl?: string;
+
+  discovered: boolean;
 };
 
 export class Interactable {
@@ -30,8 +32,6 @@ export class Interactable {
       .setOrigin(0, 1)
       .setScale(this.info.scale);
     this.worldGroup.add(this.object);
-
-    console.log(this.info.imageUrl);
   }
 
   getX() {

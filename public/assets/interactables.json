@@ -7,6 +7,8 @@
 
     "title": "Title",
     "description": "Description",
-    "sourceUrl": "https://example.com"
+    "sourceUrl": "https://example.com",
+
+    "discovered": false
   }
 ]

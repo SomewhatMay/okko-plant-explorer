@@ -7,7 +7,19 @@ export class InteractionListener {
   constructor(
     private scene: Scene,
     private interactables: Interactable[]
-  ) {}
+  ) {
+    // Listen to key presses
+    if (scene.input.keyboard) {
+      scene.input.keyboard.on("keydown-E", () => {
+        const target = this.scene.registry.get("target");
+        const currentAction = this.scene.registry.get("action");
+
+        if (target && currentAction === "") {
+          this.scene.registry.set("action", "observe");
+        }
+      });
+    }
+  }
 
   update() {
     let closest: Interactable | undefined = undefined,

@@ -35,9 +35,15 @@ export class Menu extends UIContainer {
   }
 
   subscribeToEvents() {
-    onChanges(this.scene, "target", (_: any, key: string, value: string) => {
-      this.setVisible(value !== "");
-    });
+    const updateVisibility = () => {
+      const action = this.scene.registry.get("action");
+      const target = this.scene.registry.get("target");
+
+      this.setVisible(target !== "" && action === "");
+    };
+
+    onChanges(this.scene, "action", updateVisibility);
+    onChanges(this.scene, "target", updateVisibility);
   }
 
   drawAction(title: string, n: number) {

@@ -23,7 +23,10 @@ export class InteractionListener {
             if (info.title === target) {
               return {
                 ...info,
-                discovered: Math.min(3, info.discovered + 1),
+                discovered: {
+                  ...info.discovered,
+                  [action]: true,
+                },
               };
             }
           });

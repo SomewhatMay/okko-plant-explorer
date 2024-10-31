@@ -28,17 +28,17 @@ export class Menu extends UIContainer {
       const info = (this.scene as MainGame).getInfo(
         target as string
       ) as unknown as InteractableInfo;
-      console.log(info);
+      const discovered = (this.scene as MainGame).getDiscovered(target);
       this.drawText(
         Menu.WIDTH / 2,
         26 + 4,
-        info.discovered === 3 ? info.title : "?????????",
+        discovered == 100 ? info.title : "?????????",
         24
       ).setOrigin(0.5, 0);
       this.drawText(
         Menu.WIDTH / 2,
         26 + 4 + 24 + 4,
-        "Discovered: " + info.discovered / 3 + "%"
+        "Discovered: " + discovered + "%"
       ).setOrigin(0.5, 0);
     }
 

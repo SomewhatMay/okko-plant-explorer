@@ -14,7 +14,11 @@ export type InteractableInfo = {
   touch: string;
   smell: string;
 
-  discovered: number;
+  discovered: {
+    observe: boolean;
+    touch: boolean;
+    smell: boolean;
+  };
 };
 
 export class Interactable {

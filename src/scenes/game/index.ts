@@ -108,7 +108,26 @@ export class Game extends Scene {
       }
     });
 
-    return result;
+    return result as unknown as (InteractableInfo | undefined);
+  }
+
+  /**
+   * Returns the percentage discovered, 
+   * rounded to nearest whole number.
+   */
+  getDiscovered(title: string): number {
+    const info = this.getInfo(title);
+    if (info) {
+      const discovered = 
+        Object.values(info.discovered).reduce(
+          (previous, value) => 
+            ((previous as unknown as number) + (value ? 1 : 0)) as unknown as boolean
+        ) as unknown as number / Object.values(info.discovered).length;
+
+      return Math.floor(discovered * 100) / 100;
+    }
+
+    return 0;
   }
 
   update(_: number, delta: number): void {

@@ -11,6 +11,10 @@
     "touch": "This is what it feels like",
     "smell": "I smell something",
 
-    "discovered": 0
+    "discovered": {
+      "observe": false,
+      "touch": false,
+      "smell": false
+    }
   }
 ]

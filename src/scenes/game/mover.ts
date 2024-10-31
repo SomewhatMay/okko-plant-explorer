@@ -1,7 +1,5 @@
 import { GameObjects, Physics } from "phaser";
 import { Game as MainGame } from "./index";
-import { screenSize } from "../../constants";
-import { GrassContainer } from "./grass-container";
 
 export class Mover {
   static playerSpeed = 10; // pixels per 100ms
@@ -28,9 +26,15 @@ export class Mover {
    * direction: number - player oriented (opposite of world oriented)
    */
   canMove(direction: number): boolean {
-    if (this.worldPos > this.lowerWorldBound && this.worldPos < this.upperWorldBound) {
+    if (
+      this.worldPos > this.lowerWorldBound &&
+      this.worldPos < this.upperWorldBound
+    ) {
       return true;
-    } else if (this.worldPos <= this.lowerWorldBound && direction === 1 || this.worldPos >= this.upperWorldBound && direction === -1) {
+    } else if (
+      (this.worldPos <= this.lowerWorldBound && direction === 1) ||
+      (this.worldPos >= this.upperWorldBound && direction === -1)
+    ) {
       return true;
     }
 
@@ -38,10 +42,10 @@ export class Mover {
   }
 
   update(_: number, delta: number) {
-      if (this.scene.movingLeft && this.canMove(-1)) {
-        this.moveWorld((Mover.playerSpeed * delta) / 10);
-      } else if (this.scene.movingRight && this.canMove(1)) {
-        this.moveWorld((-Mover.playerSpeed * delta) / 10);
-      }
+    if (this.scene.movingLeft && this.canMove(-1)) {
+      this.moveWorld((Mover.playerSpeed * delta) / 10);
+    } else if (this.scene.movingRight && this.canMove(1)) {
+      this.moveWorld((-Mover.playerSpeed * delta) / 10);
+    }
   }
 }

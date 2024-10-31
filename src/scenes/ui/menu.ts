@@ -1,16 +1,19 @@
-import { Scene } from "phaser";
 import { UIContainer } from "./ui-container";
 import { screenSize } from "../../constants";
 import { onChanges } from "../../util";
 import { Game as MainGame } from "../game/index";
 import { InteractableInfo } from "../game/interactable";
+import { Store } from "../game/store";
 
 export class Menu extends UIContainer {
   static readonly WIDTH = 200;
 
   private lineY: number;
 
-  constructor(scene: Scene) {
+  constructor(
+    scene: MainGame,
+    private store: Store
+  ) {
     super(scene, screenSize.x / 2 - Menu.WIDTH / 2, 40);
     this.draw();
     this.setVisible(false);
@@ -23,12 +26,12 @@ export class Menu extends UIContainer {
     this.drawRoundRect(0, 0, Menu.WIDTH, 195);
     this.drawText(Menu.WIDTH / 2, 10, "Item:").setOrigin(0.5, 0);
 
-    const target = this.scene.registry.get("target");
+    const target = this.store.get("target");
     if (target !== "") {
-      const info = (this.scene as MainGame).getInfo(
+      const info = this.store.getInfo(
         target as string
       ) as unknown as InteractableInfo;
-      const discovered = (this.scene as MainGame).getDiscovered(target);
+      const discovered = this.store.getDiscovered(target);
       this.drawText(
         Menu.WIDTH / 2,
         26 + 4,
@@ -52,8 +55,8 @@ export class Menu extends UIContainer {
 
   subscribeToEvents() {
     const updateVisibility = () => {
-      const action = this.scene.registry.get("action");
-      const target = this.scene.registry.get("target");
+      const action = this.store.get("action");
+      const target = this.store.get("target");
 
       this.draw();
       this.setVisible(target !== "" && action === "");

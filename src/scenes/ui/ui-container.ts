@@ -1,4 +1,5 @@
 import { GameObjects, Scene } from "phaser";
+import { Game as MainGame } from "../game/";
 
 export abstract class UIContainer {
   graphics: GameObjects.Graphics;
@@ -7,7 +8,7 @@ export abstract class UIContainer {
   children: GameObjects.GameObject[] = [];
 
   constructor(
-    protected scene: Scene,
+    protected scene: MainGame,
     protected offsetX: number = 0,
     protected offsetY: number = 0
   ) {

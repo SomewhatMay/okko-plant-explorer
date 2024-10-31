@@ -2,11 +2,15 @@ import { UIContainer } from "./ui-container";
 import { screenSize } from "../../constants";
 import { onChanges } from "../../util";
 import { Game as MainGame } from "../game/index";
+import { Store } from "../game/store";
 
 export class InfoDisplay extends UIContainer {
   static readonly WIDTH = 500;
 
-  constructor(scene: MainGame) {
+  constructor(
+    scene: MainGame,
+    private store: Store
+  ) {
     super(scene, screenSize.x / 2 - InfoDisplay.WIDTH / 2, 40);
 
     this.draw();
@@ -34,15 +38,15 @@ export class InfoDisplay extends UIContainer {
       this.drawText(
         InfoDisplay.WIDTH / 2,
         lineY + 4,
-        ((this.scene as MainGame).getInfo(target) as never)[action as never]
+        (this.store.getInfo(target) as never)[action as never]
       ).setOrigin(0.5, 0);
     }
   }
 
   subscribeToEvents() {
     const updateVisibility = () => {
-      const action = this.scene.registry.get("action");
-      const target = this.scene.registry.get("target");
+      const action = this.store.get("action");
+      const target = this.store.get("target");
 
       this.draw();
       this.setVisible(target !== "" && action !== "");

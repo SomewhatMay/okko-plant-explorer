@@ -1,5 +1,5 @@
 import { GameObjects, Physics } from "phaser";
-import { Game as MainGame } from "./index";
+import { InputHandler } from "./input-handler";
 
 export class Mover {
   static playerSpeed = 10; // pixels per 100ms
@@ -9,7 +9,7 @@ export class Mover {
   upperWorldBound = 2000; // px, exclusive
 
   constructor(
-    private scene: MainGame,
+    private inputHandler: InputHandler,
     private worldGroup: Physics.Arcade.StaticGroup
   ) {}
 
@@ -42,9 +42,9 @@ export class Mover {
   }
 
   update(_: number, delta: number) {
-    if (this.scene.movingLeft && this.canMove(-1)) {
+    if (this.inputHandler.movingLeft && this.canMove(-1)) {
       this.moveWorld((Mover.playerSpeed * delta) / 10);
-    } else if (this.scene.movingRight && this.canMove(1)) {
+    } else if (this.inputHandler.movingRight && this.canMove(1)) {
       this.moveWorld((-Mover.playerSpeed * delta) / 10);
     }
   }

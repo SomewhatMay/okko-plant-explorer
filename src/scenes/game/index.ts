@@ -6,23 +6,15 @@ import { InteractionListener } from "./interaction-listener";
 import { Mover } from "./mover";
 import { UI } from "../ui";
 import { Store } from "./store";
-
-type CursorKeys = Phaser.Types.Input.Keyboard.CursorKeys;
-type Key = Phaser.Input.Keyboard.Key;
+import { InputHandler } from "./input-handler";
 
 export class Game extends Scene {
   worldGroup: Physics.Arcade.StaticGroup;
   background: GameObjects.Image;
   grassContainer: GrassContainer;
-  cursors: CursorKeys | undefined;
-
-  movingLeft: boolean;
-  movingRight: boolean;
 
   store: Store;
-
-  aKey: Key;
-  dKey: Key;
+  inputHandler: InputHandler;
 
   player: Player;
   mover: Mover;
@@ -71,19 +63,14 @@ export class Game extends Scene {
     this.grassContainer = new GrassContainer(this, this.worldGroup);
     this.grassContainer.populateGrass(100);
 
-    if (this.input.keyboard) {
-      this.cursors = this.input.keyboard.createCursorKeys();
-      this.aKey = this.input.keyboard.addKey("A");
-      this.dKey = this.input.keyboard.addKey("D");
-    }
+    this.inputHandler = new InputHandler(this);
 
-    this.cursors = this.input.keyboard?.createCursorKeys();
     this.interactableInfo.forEach((info) => {
       this.interactables.push(new Interactable(this, this.worldGroup, info));
     });
 
-    this.mover = new Mover(this, this.worldGroup);
-    this.player = new Player(this, this.cursors, this.mover);
+    this.mover = new Mover(this.inputHandler, this.worldGroup);
+    this.player = new Player(this, this.inputHandler, this.mover);
 
     this.ui = new UI(this, this.store);
 
@@ -94,8 +81,7 @@ export class Game extends Scene {
   }
 
   update(_: number, delta: number): void {
-    this.movingLeft = this.cursors?.left.isDown || this.aKey.isDown;
-    this.movingRight = this.cursors?.right.isDown || this.dKey.isDown;
+    this.inputHandler.update();
 
     this.player.update(_, delta);
     this.mover.update(_, delta);

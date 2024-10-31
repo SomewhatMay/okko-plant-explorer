@@ -3,14 +3,15 @@ import { screenSize } from "../../constants";
 import { GrassContainer } from "./grass-container";
 import { Mover } from "./mover";
 import { Game as MainGame } from "./index";
+import { InputHandler } from "./input-handler";
 
 export class Player {
   sprite: GameObjects.Sprite;
   wasWalking = false;
 
   constructor(
-    private scene: MainGame,
-    private cursors: Phaser.Types.Input.Keyboard.CursorKeys | undefined,
+    scene: MainGame,
+    private inputHandler: InputHandler,
     private mover: Mover
   ) {
     this.sprite = scene.add
@@ -41,28 +42,26 @@ export class Player {
   }
 
   update(_: number, __: number): void {
-    if (this.cursors) {
-      if (this.scene.movingLeft && this.mover.canMove(-1)) {
-        this.sprite.setOrigin(0.53, 1);
-        this.sprite.flipX = true;
+    if (this.inputHandler.movingLeft && this.mover.canMove(-1)) {
+      this.sprite.setOrigin(0.53, 1);
+      this.sprite.flipX = true;
 
-        if (!this.wasWalking) {
-          this.sprite.play("run");
-          this.wasWalking = true;
-        }
-      } else if (this.scene.movingRight && this.mover.canMove(1)) {
-        this.sprite.setOrigin(0.47, 1);
-        this.sprite.flipX = false;
+      if (!this.wasWalking) {
+        this.sprite.play("run");
+        this.wasWalking = true;
+      }
+    } else if (this.inputHandler.movingRight && this.mover.canMove(1)) {
+      this.sprite.setOrigin(0.47, 1);
+      this.sprite.flipX = false;
 
-        if (!this.wasWalking) {
-          this.sprite.play("run");
-          this.wasWalking = true;
-        }
-      } else {
-        if (this.wasWalking) {
-          this.sprite.play("idle");
-          this.wasWalking = false;
-        }
+      if (!this.wasWalking) {
+        this.sprite.play("run");
+        this.wasWalking = true;
+      }
+    } else {
+      if (this.wasWalking) {
+        this.sprite.play("idle");
+        this.wasWalking = false;
       }
     }
   }

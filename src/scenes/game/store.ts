@@ -51,4 +51,15 @@ export class Store {
   get(key: string) {
     return this.scene.registry.get(key);
   }
+
+  changed(key: string, callback: (value: unknown) => void) {
+    const onEvent = (_: any, eventKey: any, value: any) => {
+      if (eventKey === key) {
+        callback(value);
+      }
+    };
+
+    this.scene.registry.events.on("setdata", onEvent);
+    this.scene.registry.events.on("changedata", onEvent);
+  }
 }

@@ -1,6 +1,5 @@
 import { UIContainer } from "./ui-container";
 import { screenSize } from "../../constants";
-import { onChanges } from "../../util";
 import { Game as MainGame } from "../game/index";
 import { InteractableInfo } from "../game/interactable";
 import { Store } from "../game/store";
@@ -62,9 +61,9 @@ export class Menu extends UIContainer {
       this.setVisible(target !== "" && action === "");
     };
 
-    onChanges(this.scene, "action", updateVisibility);
-    onChanges(this.scene, "target", updateVisibility);
-    onChanges(this.scene, "interactables", updateVisibility);
+    this.store.changed("action", updateVisibility);
+    this.store.changed("target", updateVisibility);
+    this.store.changed("interactables", updateVisibility);
   }
 
   drawAction(title: string, n: number) {

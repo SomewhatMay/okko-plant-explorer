@@ -1,7 +1,7 @@
 import { UIContainer } from "./ui-container";
 import { screenSize } from "../../constants";
 import { Game as MainGame } from "../game/index";
-import { InteractableInfo } from "../game/interactable";
+import { InteractableInfo } from "../game/interactables";
 import { Store } from "../game/store";
 
 export class Menu extends UIContainer {

@@ -1,5 +1,5 @@
-import { GameObjects, Physics, Scene } from "phaser";
-import { screenSize } from "../../constants";
+import { Physics, Scene } from "phaser";
+import { screenSize } from "../../../constants";
 import { Math as pMath } from "phaser";
 const { Vector2 } = pMath;
 
@@ -9,7 +9,9 @@ export class GrassContainer {
   constructor(
     private scene: Scene,
     private worldGroup: Physics.Arcade.StaticGroup
-  ) {}
+  ) {
+    this.populateGrass(100);
+  }
 
   createGrass(x: number) {
     const grass = this.scene.add
@@ -20,7 +22,7 @@ export class GrassContainer {
   }
 
   populateGrass(width: number) {
-    for (let i = -20; i < width-20; i++) {
+    for (let i = -20; i < width - 20; i++) {
       this.createGrass(i);
     }
   }

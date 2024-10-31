@@ -1,5 +1,5 @@
 import { Scene } from "phaser";
-import { Interactable, InteractableInfo } from "./interactable";
+import { Interactable, InteractableInfo } from ".";
 
 export class InteractionListener {
   maxDistance = 500; // px

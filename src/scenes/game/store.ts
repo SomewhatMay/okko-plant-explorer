@@ -1,5 +1,5 @@
 import { Game as MainGame } from "./index";
-import { InteractableInfo } from "./interactable";
+import { InteractableInfo } from "./interactables";
 
 export class Store {
   // run with the create function

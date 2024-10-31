@@ -1,8 +1,11 @@
 import { GameObjects, Physics, Scene } from "phaser";
-import { GrassContainer } from "./grass-container";
+import { GrassContainer } from "./world-decoration";
 import { Player } from "./player";
-import { Interactable, InteractableInfo } from "./interactable";
-import { InteractionListener } from "./interaction-listener";
+import {
+  Interactable,
+  InteractableInfo,
+  InteractionListener,
+} from "./interactables";
 import { Mover } from "./mover";
 import { UI } from "../ui";
 import { Store } from "./store";
@@ -61,7 +64,6 @@ export class Game extends Scene {
 
     this.worldGroup = this.physics.add.staticGroup();
     this.grassContainer = new GrassContainer(this, this.worldGroup);
-    this.grassContainer.populateGrass(100);
 
     this.inputHandler = new InputHandler(this);
 

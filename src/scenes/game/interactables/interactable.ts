@@ -1,6 +1,6 @@
 import { GameObjects, Physics, Scene } from "phaser";
-import { screenSize } from "../../constants";
-import { GrassContainer } from "./grass-container";
+import { screenSize } from "../../../constants";
+import { GrassContainer } from "../world-decoration";
 
 export type InteractableInfo = {
   imageKey: string;

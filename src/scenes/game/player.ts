@@ -1,6 +1,6 @@
 import { GameObjects } from "phaser";
 import { screenSize } from "../../constants";
-import { GrassContainer } from "./grass-container";
+import { GrassContainer } from "./world-decoration";
 import { Mover } from "./mover";
 import { Game as MainGame } from "./index";
 import { InputHandler } from "./input-handler";

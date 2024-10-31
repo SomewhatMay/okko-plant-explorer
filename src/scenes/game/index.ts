@@ -85,8 +85,8 @@ export class Game extends Scene {
       this.interactables.push(new Interactable(this, this.worldGroup, info));
     });
 
-    this.player = new Player(this, this.cursors);
     this.mover = new Mover(this, this.worldGroup);
+    this.player = new Player(this, this.cursors, this.mover);
 
     this.ui = new UI(this);
 
@@ -124,7 +124,7 @@ export class Game extends Scene {
             ((previous as unknown as number) + (value ? 1 : 0)) as unknown as boolean
         ) as unknown as number / Object.values(info.discovered).length;
 
-      return Math.floor(discovered * 100) / 100;
+      return Math.floor(discovered * 100);
     }
 
     return 0;

@@ -20,7 +20,7 @@ export class GrassContainer {
   }
 
   populateGrass(width: number) {
-    for (let i = 0; i < width; i++) {
+    for (let i = -20; i < width-20; i++) {
       this.createGrass(i);
     }
   }

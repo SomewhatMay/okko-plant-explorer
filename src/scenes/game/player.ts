@@ -10,7 +10,8 @@ export class Player {
 
   constructor(
     private scene: MainGame,
-    private cursors: Phaser.Types.Input.Keyboard.CursorKeys | undefined
+    private cursors: Phaser.Types.Input.Keyboard.CursorKeys | undefined,
+    private mover: Mover
   ) {
     this.sprite = scene.add
       .sprite(
@@ -41,7 +42,7 @@ export class Player {
 
   update(_: number, __: number): void {
     if (this.cursors) {
-      if (this.scene.movingLeft) {
+      if (this.scene.movingLeft && this.mover.canMove(-1)) {
         this.sprite.setOrigin(0.53, 1);
         this.sprite.flipX = true;
 
@@ -49,7 +50,7 @@ export class Player {
           this.sprite.play("run");
           this.wasWalking = true;
         }
-      } else if (this.scene.movingRight) {
+      } else if (this.scene.movingRight && this.mover.canMove(1)) {
         this.sprite.setOrigin(0.47, 1);
         this.sprite.flipX = false;
 

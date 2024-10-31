@@ -11,6 +11,6 @@
     "touch": "This is what it feels like",
     "smell": "I smell something",
 
-    "discovered": false
+    "discovered": 0
   }
 ]

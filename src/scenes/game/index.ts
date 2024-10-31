@@ -96,6 +96,21 @@ export class Game extends Scene {
     );
   }
 
+  getInfo(title: string) {
+    let result;
+
+    const interactables = this.registry.get(
+      "interactables"
+    ) as InteractableInfo[];
+    interactables.forEach((info) => {
+      if (info.title === title) {
+        result = info;
+      }
+    });
+
+    return result;
+  }
+
   update(_: number, delta: number): void {
     this.movingLeft = this.cursors?.left.isDown || this.aKey.isDown;
     this.movingRight = this.cursors?.right.isDown || this.dKey.isDown;

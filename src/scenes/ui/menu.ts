@@ -2,6 +2,8 @@ import { Scene } from "phaser";
 import { UIContainer } from "./ui-container";
 import { screenSize } from "../../constants";
 import { onChanges } from "../../util";
+import { Game as MainGame } from "../game/index";
+import { InteractableInfo } from "../game/interactable";
 
 export class Menu extends UIContainer {
   static readonly WIDTH = 200;
@@ -20,11 +22,25 @@ export class Menu extends UIContainer {
     this.clear();
     this.drawRoundRect(0, 0, Menu.WIDTH, 195);
     this.drawText(Menu.WIDTH / 2, 10, "Item:").setOrigin(0.5, 0);
-    this.drawText(Menu.WIDTH / 2, 26 + 4, "?????????", 24).setOrigin(0.5, 0);
-    this.drawText(Menu.WIDTH / 2, 26 + 4 + 24 + 4, "Discovered: 0%").setOrigin(
-      0.5,
-      0
-    );
+
+    const target = this.scene.registry.get("target");
+    if (target !== "") {
+      const info = (this.scene as MainGame).getInfo(
+        target as string
+      ) as unknown as InteractableInfo;
+      console.log(info);
+      this.drawText(
+        Menu.WIDTH / 2,
+        26 + 4,
+        info.discovered === 3 ? info.title : "?????????",
+        24
+      ).setOrigin(0.5, 0);
+      this.drawText(
+        Menu.WIDTH / 2,
+        26 + 4 + 24 + 4,
+        "Discovered: " + info.discovered / 3 + "%"
+      ).setOrigin(0.5, 0);
+    }
 
     this.lineY = 26 + 4 + 24 + 4 + 24 + 2;
     this.drawLine(16, this.lineY, Menu.WIDTH - 16, this.lineY);
@@ -39,11 +55,13 @@ export class Menu extends UIContainer {
       const action = this.scene.registry.get("action");
       const target = this.scene.registry.get("target");
 
+      this.draw();
       this.setVisible(target !== "" && action === "");
     };
 
     onChanges(this.scene, "action", updateVisibility);
     onChanges(this.scene, "target", updateVisibility);
+    onChanges(this.scene, "interactables", updateVisibility);
   }
 
   drawAction(title: string, n: number) {

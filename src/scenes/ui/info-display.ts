@@ -29,15 +29,14 @@ export class InfoDisplay extends UIContainer {
 
     const target = this.scene.registry.get("target") as string;
     const action = this.scene.registry.get("action") as string;
-    (this.scene as MainGame).interactableInfo.forEach((info) => {
-      if (info.title === target) {
-        this.drawText(
-          InfoDisplay.WIDTH / 2,
-          lineY + 4,
-          info[action as never]
-        ).setOrigin(0.5, 0);
-      }
-    });
+
+    if (target !== "" && action !== "") {
+      this.drawText(
+        InfoDisplay.WIDTH / 2,
+        lineY + 4,
+        ((this.scene as MainGame).getInfo(target) as never)[action as never]
+      ).setOrigin(0.5, 0);
+    }
   }
 
   subscribeToEvents() {

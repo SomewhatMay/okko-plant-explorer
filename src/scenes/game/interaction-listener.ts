@@ -1,5 +1,5 @@
 import { Scene } from "phaser";
-import { Interactable } from "./interactable";
+import { Interactable, InteractableInfo } from "./interactable";
 
 export class InteractionListener {
   maxDistance = 500; // px
@@ -16,6 +16,18 @@ export class InteractionListener {
 
         if (target !== "" && currentAction === "") {
           this.scene.registry.set("action", action);
+
+          const interactableInfo = (
+            scene.registry.get("interactables") as InteractableInfo[]
+          ).map((info) => {
+            if (info.title === target) {
+              return {
+                ...info,
+                discovered: Math.min(3, info.discovered + 1),
+              };
+            }
+          });
+          scene.registry.set("interactables", interactableInfo);
         }
       });
     };

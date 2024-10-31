@@ -85,14 +85,13 @@ export class Game extends Scene {
     //     left:Phaser.Input.Keyboard.KeyCodes.A,
     //     right:Phaser.Input.Keyboard.KeyCodes.D});
 
-        
     this.cursors = this.input.keyboard?.createCursorKeys();
     this.interactableInfo.forEach((info) => {
       this.interactables.push(new Interactable(this, this.worldGroup, info));
     });
 
     this.player = new Player(this, this.cursors);
-    this.mover = new Mover(this.worldGroup, this.cursors);
+    this.mover = new Mover(this, this.worldGroup);
 
     this.ui = new UI(this);
 
@@ -103,6 +102,9 @@ export class Game extends Scene {
   }
 
   update(_: number, delta: number): void {
+    this.movingLeft = this.cursors?.left.isDown || this.aKey.isDown;
+    this.movingRight = this.cursors?.right.isDown || this.dKey.isDown;
+
     this.player.update(_, delta);
     this.mover.update(_, delta);
     this.ui.update(_, delta);

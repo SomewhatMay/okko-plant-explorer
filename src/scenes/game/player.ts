@@ -41,7 +41,7 @@ export class Player {
 
   update(_: number, __: number): void {
     if (this.cursors) {
-      if (this.cursors.left?.isDown || this.scene.aKey.isDown) {
+      if (this.scene.movingLeft) {
         this.sprite.setOrigin(0.53, 1);
         this.sprite.flipX = true;
 
@@ -49,7 +49,7 @@ export class Player {
           this.sprite.play("run");
           this.wasWalking = true;
         }
-      } else if (this.cursors.right?.isDown || this.scene.dKey.isDown) {
+      } else if (this.scene.movingRight) {
         this.sprite.setOrigin(0.47, 1);
         this.sprite.flipX = false;
 

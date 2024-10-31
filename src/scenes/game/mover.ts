@@ -1,4 +1,5 @@
 import { GameObjects, Physics } from "phaser";
+import { Game as MainGame } from "./index";
 
 export class Mover {
   static playerSpeed = 10; // pixels per 100ms
@@ -6,8 +7,8 @@ export class Mover {
   worldPos = 0;
 
   constructor(
-    private worldGroup: Physics.Arcade.StaticGroup,
-    private cursors: Phaser.Types.Input.Keyboard.CursorKeys | undefined
+    private scene: MainGame,
+    private worldGroup: Physics.Arcade.StaticGroup
   ) {}
 
   moveWorld(offset: number) {
@@ -20,12 +21,12 @@ export class Mover {
   }
 
   update(_: number, delta: number) {
-    if (this.cursors) {
-      if (this.cursors.left?.isDown) {
-        this.moveWorld((Mover.playerSpeed * delta) / 10);
-      } else if (this.cursors.right?.isDown) {
-        this.moveWorld((-Mover.playerSpeed * delta) / 10);
-      }
+    if (this.scene.movingLeft) {
+      console.log("Moving left!");
+      this.moveWorld((Mover.playerSpeed * delta) / 10);
+    } else if (this.scene.movingRight) {
+      console.log("Moving right!");
+      this.moveWorld((-Mover.playerSpeed * delta) / 10);
     }
   }
 }

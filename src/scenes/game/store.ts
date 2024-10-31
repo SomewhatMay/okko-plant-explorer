@@ -1,15 +1,18 @@
 import { Game as MainGame } from "./index";
-import { InteractableInfo } from "./interactables";
+import { InteractableContainer, InteractableInfo } from "./interactables";
 
 export class Store {
   // run with the create function
-  constructor(private scene: MainGame) {
+  constructor(
+    private scene: MainGame,
+    interactableContainer: InteractableContainer
+  ) {
     // Initialize Data
     scene.registry.set("target", "");
     scene.registry.set("action", "");
     scene.registry.set(
       "interactables",
-      JSON.parse(JSON.stringify(scene.interactableInfo)) // Storing a copy of the data so we can mutate it
+      JSON.parse(JSON.stringify(interactableContainer.interactableInfo)) // Storing a copy of the data so we can mutate it
     );
   }
 

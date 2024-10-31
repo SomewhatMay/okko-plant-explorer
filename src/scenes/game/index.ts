@@ -1,11 +1,7 @@
 import { GameObjects, Physics, Scene } from "phaser";
 import { GrassContainer } from "./world-decoration";
 import { Player } from "./player";
-import {
-  Interactable,
-  InteractableInfo,
-  InteractionListener,
-} from "./interactables";
+import { InteractableContainer } from "./interactables";
 import { Mover } from "./mover";
 import { UI } from "../ui";
 import { Store } from "./store";
@@ -18,15 +14,12 @@ export class Game extends Scene {
 
   store: Store;
   inputHandler: InputHandler;
+  interactableContainer: InteractableContainer;
 
   player: Player;
   mover: Mover;
 
   ui: UI;
-
-  interactionListener: InteractionListener;
-  interactableInfo: InteractableInfo[] = [];
-  interactables: Interactable[] = [];
 
   constructor() {
     super({
@@ -41,45 +34,36 @@ export class Game extends Scene {
         ],
       },
     });
+
+    this.interactableContainer = new InteractableContainer(this);
   }
 
   preload() {
-    // Retrieve the interactables json from cache
-    this.load.json("interactables", "assets/interactables.json");
-    this.interactableInfo = this.cache.json.get(
-      "interactables"
-    ) as InteractableInfo[];
-
-    // Load all interactable sprites
-    this.interactableInfo.forEach((info) => {
-      this.load.image(info.imageKey, info.imageUrl);
-      console.log(
-        "Loading image key " + info.imageKey + " with url " + info.imageUrl
-      );
-    });
+    this.interactableContainer.preload();
   }
 
   create() {
-    this.store = new Store(this);
-
+    /*
+      this order is important as interactableContainer 
+      needs worldGroup to function
+    */
     this.worldGroup = this.physics.add.staticGroup();
+    /* 
+      interactableContainer must be created before
+      store since store depends on the data loaded
+      by interactableContainer
+    */
+    this.interactableContainer.create();
+    this.store = new Store(this, this.interactableContainer);
+
     this.grassContainer = new GrassContainer(this, this.worldGroup);
 
     this.inputHandler = new InputHandler(this);
-
-    this.interactableInfo.forEach((info) => {
-      this.interactables.push(new Interactable(this, this.worldGroup, info));
-    });
 
     this.mover = new Mover(this.inputHandler, this.worldGroup);
     this.player = new Player(this, this.inputHandler, this.mover);
 
     this.ui = new UI(this, this.store);
-
-    this.interactionListener = new InteractionListener(
-      this,
-      this.interactables
-    );
   }
 
   update(_: number, delta: number): void {
@@ -88,6 +72,6 @@ export class Game extends Scene {
     this.player.update(_, delta);
     this.mover.update(_, delta);
     this.ui.update(_, delta);
-    this.interactionListener.update();
+    this.interactableContainer.update();
   }
 }

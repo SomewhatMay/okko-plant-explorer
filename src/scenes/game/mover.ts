@@ -22,10 +22,8 @@ export class Mover {
 
   update(_: number, delta: number) {
     if (this.scene.movingLeft) {
-      console.log("Moving left!");
       this.moveWorld((Mover.playerSpeed * delta) / 10);
     } else if (this.scene.movingRight) {
-      console.log("Moving right!");
       this.moveWorld((-Mover.playerSpeed * delta) / 10);
     }
   }

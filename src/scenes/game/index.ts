@@ -79,11 +79,6 @@ export class Game extends Scene {
       this.aKey = this.input.keyboard.addKey("A");
       this.dKey = this.input.keyboard.addKey("D");
     }
-    // this.input.keyboard?.addKeys(
-    //   {up:Phaser.Input.Keyboard.KeyCodes.W,
-    //     down:Phaser.Input.Keyboard.KeyCodes.S,
-    //     left:Phaser.Input.Keyboard.KeyCodes.A,
-    //     right:Phaser.Input.Keyboard.KeyCodes.D});
 
     this.cursors = this.input.keyboard?.createCursorKeys();
     this.interactableInfo.forEach((info) => {

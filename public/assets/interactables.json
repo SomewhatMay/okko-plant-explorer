@@ -6,8 +6,10 @@
     "xCoordinate": 150,
 
     "title": "Title",
-    "description": "Description",
     "sourceUrl": "https://example.com",
+    "observe": "This is a cool thing",
+    "touch": "This is what it feels like",
+    "smell": "I smell something",
 
     "discovered": false
   }

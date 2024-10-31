@@ -9,16 +9,30 @@ export class InteractionListener {
     private interactables: Interactable[]
   ) {
     // Listen to key presses
-    if (scene.input.keyboard) {
-      scene.input.keyboard.on("keydown-E", () => {
+    const createInteraction = (key: string, action: string) => {
+      scene.input.keyboard?.on("keydown-" + key, () => {
         const target = this.scene.registry.get("target");
         const currentAction = this.scene.registry.get("action");
 
-        if (target && currentAction === "") {
-          this.scene.registry.set("action", "observe");
+        if (target !== "" && currentAction === "") {
+          this.scene.registry.set("action", action);
         }
       });
-    }
+    };
+
+    createInteraction("E", "observe");
+    createInteraction("F", "touch");
+    createInteraction("Q", "smell");
+
+    scene.input.keyboard?.on("keydown", (event: any) => {
+      if (event.key == "Escape") {
+        const target = this.scene.registry.get("target");
+
+        if (target !== "") {
+          this.scene.registry.set("action", "");
+        }
+      }
+    });
   }
 
   update() {

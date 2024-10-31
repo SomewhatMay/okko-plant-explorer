@@ -9,8 +9,10 @@ export type InteractableInfo = {
   scale: number;
 
   title: string;
-  description: string;
   sourceUrl?: string;
+  observe: string;
+  touch: string;
+  smell: string;
 
   discovered: boolean;
 };

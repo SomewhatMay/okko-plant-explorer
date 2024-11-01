@@ -10,7 +10,7 @@ export class GrassContainer {
     private scene: Scene,
     private worldGroup: Physics.Arcade.StaticGroup
   ) {
-    this.populateGrass(100);
+    this.populateGrass(800);
     this.scene.textures
       .get("grass")
       .setFilter(Phaser.Textures.FilterMode.NEAREST);

@@ -1,5 +1,9 @@
 import { GameObjects, Physics, Scene } from "phaser";
-import { GrassContainer } from "./world-decoration";
+import {
+  GrassContainer,
+  MountainContainer,
+  TreeContainer,
+} from "./world-decoration";
 import { Player } from "./player";
 import { InteractableContainer } from "./interactables";
 import { Mover } from "./mover";
@@ -8,9 +12,14 @@ import { Store } from "./store";
 import { InputHandler } from "./input-handler";
 
 export class Game extends Scene {
-  worldGroup: Physics.Arcade.StaticGroup;
   background: GameObjects.Image;
+  worldGroup: Physics.Arcade.StaticGroup;
+  mountainGroup: Physics.Arcade.StaticGroup;
+  treeGroup: Physics.Arcade.StaticGroup;
+
   grassContainer: GrassContainer;
+  mountainContainer: MountainContainer;
+  treeContainer: TreeContainer;
 
   store: Store;
   inputHandler: InputHandler;
@@ -43,28 +52,28 @@ export class Game extends Scene {
   }
 
   create() {
-    /*
-      this order is important as interactableContainer 
-      needs worldGroup to function
-    */
-    this.worldGroup = this.physics.add.staticGroup();
-    /* 
-      interactableContainer must be created before
-      store since store depends on the data loaded
-      by interactableContainer
-    */
-    this.interactableContainer.create();
     this.store = new Store(this, this.interactableContainer);
 
+    this.worldGroup = this.physics.add.staticGroup();
+    this.treeGroup = this.physics.add.staticGroup();
+    this.mountainGroup = this.physics.add.staticGroup();
+
+    this.mountainContainer = new MountainContainer(this, this.mountainGroup);
+    this.treeContainer = new TreeContainer(this, this.treeGroup);
     this.grassContainer = new GrassContainer(this, this.worldGroup);
 
     this.inputHandler = new InputHandler(this);
 
-    this.mover = new Mover(this.inputHandler, this.worldGroup);
+    this.mover = new Mover(
+      this.inputHandler,
+      this.worldGroup,
+      this.mountainGroup,
+      this.treeGroup
+    );
     this.player = new Player(this, this.inputHandler, this.mover);
 
     this.ui = new UI(this, this.store);
-    this.interactableContainer.postCreate(this.store, this.ui.notification);
+    this.interactableContainer.create(this.store, this.ui.notification);
   }
 
   update(_: number, delta: number): void {

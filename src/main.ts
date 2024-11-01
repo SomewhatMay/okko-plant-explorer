@@ -27,7 +27,7 @@ const config: Types.Core.GameConfig = {
         x: 0,
         y: 0,
       },
-      debug: true,
+      // debug: true,
     },
   },
   scene: [Boot, MainGame],

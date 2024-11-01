@@ -33,15 +33,13 @@ export class InteractableContainer {
     });
   }
 
-  create() {
+  create(store: Store, notification: Notification) {
     this.interactableInfo.forEach((info) => {
       this.interactables.push(
         new Interactable(this.scene, this.scene.worldGroup, info)
       );
     });
-  }
 
-  postCreate(store: Store, notification: Notification) {
     this.interactionListener = new InteractionListener(
       this.scene,
       this.interactables,

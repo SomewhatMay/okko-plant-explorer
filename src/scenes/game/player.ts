@@ -14,6 +14,8 @@ export class Player {
     private inputHandler: InputHandler,
     private mover: Mover
   ) {
+    scene.textures.get("player").setFilter(Phaser.Textures.FilterMode.NEAREST);
+
     this.sprite = scene.add
       .sprite(
         screenSize.x / 2,
@@ -21,7 +23,7 @@ export class Player {
         "player"
       )
       .setOrigin(0.44, 1)
-      .setScale(4);
+      .setScale(2);
 
     scene.anims.create({
       key: "idle",

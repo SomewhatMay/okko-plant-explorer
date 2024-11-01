@@ -2,15 +2,19 @@ import { GameObjects, Physics } from "phaser";
 import { InputHandler } from "./input-handler";
 
 export class Mover {
-  static playerSpeed = 10; // pixels per 100ms
+  static playerSpeed = 10; // pixels per 100ms - also affects the worldGroup
+  static mountainSpeed = 0.075; // affects the mountainGroup - multiplier for playerSpeed
+  static treeSpeed = 0.125;
 
   worldPos = 0; // player oriented
-  lowerWorldBound = -500; // px, exclusive
-  upperWorldBound = 2000; // px, exclusive
+  lowerWorldBound = -1e3; // px, exclusive
+  upperWorldBound = 1e5; // px, exclusive
 
   constructor(
     private inputHandler: InputHandler,
-    private worldGroup: Physics.Arcade.StaticGroup
+    private worldGroup: Physics.Arcade.StaticGroup,
+    private mountainGroup: Physics.Arcade.StaticGroup,
+    private treeGroup: Physics.Arcade.StaticGroup
   ) {}
 
   moveWorld(offset: number) {
@@ -19,6 +23,16 @@ export class Mover {
     this.worldGroup.getChildren().forEach((_child) => {
       const child = _child as GameObjects.Image;
       child.setPosition(child.x + offset, child.y);
+    });
+
+    this.mountainGroup.getChildren().forEach((_child) => {
+      const child = _child as GameObjects.Image;
+      child.setPosition(child.x + offset * Mover.mountainSpeed, child.y);
+    });
+
+    this.treeGroup.getChildren().forEach((_child) => {
+      const child = _child as GameObjects.Image;
+      child.setPosition(child.x + offset * Mover.treeSpeed, child.y);
     });
   }
 

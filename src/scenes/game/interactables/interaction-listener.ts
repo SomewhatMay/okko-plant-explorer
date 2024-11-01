@@ -1,12 +1,16 @@
 import { Scene } from "phaser";
 import { Interactable, InteractableInfo } from ".";
+import { Store } from "../store";
+import { Notification } from "../../ui/notification";
 
 export class InteractionListener {
   maxDistance = 500; // px
 
   constructor(
     private scene: Scene,
-    private interactables: Interactable[]
+    private interactables: Interactable[],
+    store: Store,
+    notification: Notification
   ) {
     // Listen to key presses
     const createInteraction = (key: string, action: string) => {
@@ -31,6 +35,12 @@ export class InteractionListener {
             }
           });
           scene.registry.set("interactables", interactableInfo);
+
+          if (store.getDiscovered(target) === 100) {
+            notification.displayNotification(
+              "You have discovered " + target + "!"
+            );
+          }
         }
       });
     };

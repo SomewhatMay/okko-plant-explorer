@@ -1,6 +1,8 @@
 import { Game as MainGame } from "../index";
+import { Store } from "../store";
 import { Interactable, InteractableInfo } from "./interactable";
 import { InteractionListener } from "./interaction-listener";
+import { Notification } from "../../ui/notification";
 
 /**
  * See note on constructor
@@ -37,10 +39,14 @@ export class InteractableContainer {
         new Interactable(this.scene, this.scene.worldGroup, info)
       );
     });
+  }
 
+  postCreate(store: Store, notification: Notification) {
     this.interactionListener = new InteractionListener(
       this.scene,
-      this.interactables
+      this.interactables,
+      store,
+      notification
     );
   }
 

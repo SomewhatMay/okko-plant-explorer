@@ -64,6 +64,7 @@ export class Game extends Scene {
     this.player = new Player(this, this.inputHandler, this.mover);
 
     this.ui = new UI(this, this.store);
+    this.interactableContainer.postCreate(this.store, this.ui.notification);
   }
 
   update(_: number, delta: number): void {

@@ -1,16 +1,19 @@
-import { Physics, Scene } from "phaser";
+import { Physics } from "phaser";
+import { Game as MainGame } from "../index";
 import { screenSize } from "../../../constants";
 import { GrassContainer } from "./grass-container";
+import { DecorationContainer } from "./decoration-container";
 
-export class TreeContainer {
+export class TreeContainer extends DecorationContainer {
   static treeScale = 8;
   static scaleVariation = 3; // deviation from treeScale (subtraction or addition)
   static treeCount = 4; // number of tree textures labeled as "tree{n}"
 
   constructor(
-    private scene: Scene,
-    private treeGroup: Physics.Arcade.StaticGroup
+    scene: MainGame,
+    treeGroup: Physics.Arcade.StaticGroup
   ) {
+    super(scene, treeGroup);
     for (let i = 0; i < TreeContainer.treeCount; i++) {
       this.scene.textures
         .get("tree" + i)
@@ -33,7 +36,7 @@ export class TreeContainer {
       x * tree.width * TreeContainer.treeScale,
       screenSize.y - GrassContainer.grassSize.y
     );
-    this.treeGroup.add(tree);
+    this.staticGroup.add(tree);
   }
 
   populateTrees(width: number) {

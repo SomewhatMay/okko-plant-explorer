@@ -1,15 +1,18 @@
 import { Physics, Scene } from "phaser";
+import { Game as MainGame } from "../index";
 import { screenSize } from "../../../constants";
 import { Math as pMath } from "phaser";
+import { DecorationContainer } from "./decoration-container";
 const { Vector2 } = pMath;
 
-export class GrassContainer {
+export class GrassContainer extends DecorationContainer {
   static grassSize = new Vector2(150, 150); // px
 
   constructor(
-    private scene: Scene,
-    private worldGroup: Physics.Arcade.StaticGroup
+    scene: MainGame,
+    worldGroup: Physics.Arcade.StaticGroup
   ) {
+    super(scene, worldGroup);
     this.populateGrass(800);
     this.scene.textures
       .get("grass")
@@ -21,7 +24,7 @@ export class GrassContainer {
       .image(x * GrassContainer.grassSize.x, screenSize.y, "grass")
       .setOrigin(0, 1)
       .setDisplaySize(GrassContainer.grassSize.x, GrassContainer.grassSize.y);
-    this.worldGroup.add(grass);
+    this.staticGroup.add(grass);
   }
 
   populateGrass(width: number) {

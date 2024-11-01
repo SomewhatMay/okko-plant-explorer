@@ -1,14 +1,17 @@
-import { Physics, Scene } from "phaser";
+import { Physics } from "phaser";
+import { Game as MainGame } from "../index";
 import { screenSize } from "../../../constants";
 import { GrassContainer } from "./grass-container";
+import { DecorationContainer } from "./decoration-container";
 
-export class MountainContainer {
+export class MountainContainer extends DecorationContainer {
   static mountainScale = 3.5;
 
   constructor(
-    private scene: Scene,
-    private mountainGroup: Physics.Arcade.StaticGroup
+    scene: MainGame,
+    mountainGroup: Physics.Arcade.StaticGroup
   ) {
+    super(scene, mountainGroup);
     this.scene.textures
       .get("mountain")
       .setFilter(Phaser.Textures.FilterMode.NEAREST);
@@ -26,7 +29,7 @@ export class MountainContainer {
       x * mountain.width * MountainContainer.mountainScale,
       screenSize.y - GrassContainer.grassSize.y
     );
-    this.mountainGroup.add(mountain);
+    this.staticGroup.add(mountain);
   }
 
   populateMountains(width: number) {

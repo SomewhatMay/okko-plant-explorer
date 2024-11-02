@@ -3,7 +3,11 @@ import { Game as MainGame } from "../index";
 import { DecorationContainer } from "./decoration-container";
 import { GrassContainer } from "./grass-container";
 import { MountainContainer } from "./mountain-container";
-import { TreeContainer } from "./tree-container";
+import {
+  TreeContainer1,
+  TreeContainer2,
+  TreeContainer3,
+} from "./tree-containers";
 
 type ContainerInfo = {
   speedMultiplier: number;
@@ -27,7 +31,9 @@ export class WorldDecoration {
   decorationContainers: ContainerInfo[] = [
     { speedMultiplier: 1, class: GrassContainer },
     { speedMultiplier: 0.075, class: MountainContainer },
-    { speedMultiplier: 0.125, class: TreeContainer },
+    { speedMultiplier: 0.1, class: TreeContainer3 }, // farther ones should be drawn first
+    { speedMultiplier: 0.11, class: TreeContainer2 },
+    { speedMultiplier: 0.125, class: TreeContainer1 },
   ];
 
   decorationInfos: DecorationInfo[] = [];

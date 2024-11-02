@@ -4,8 +4,6 @@ import { Store } from "../store";
 import { Notification } from "../../ui/notification";
 
 export class InteractionListener {
-  maxDistance = 500; // px
-
   constructor(
     private scene: Scene,
     private interactables: Interactable[],
@@ -34,6 +32,7 @@ export class InteractionListener {
                 },
               };
             }
+            return info;
           });
           scene.registry.set("interactables", interactableInfo);
 
@@ -67,14 +66,17 @@ export class InteractionListener {
 
     this.interactables.forEach((interactable) => {
       const interactableDistance = Math.abs(interactable.getDistance());
-      if (interactableDistance < distance) {
+      if (
+        interactableDistance < distance &&
+        interactableDistance <= interactable.info.interactionDistance
+      ) {
         distance = interactableDistance;
         closest = interactable;
       }
     });
 
     const prevTarget = this.scene.registry.get("target");
-    if (closest && distance < this.maxDistance) {
+    if (closest !== undefined) {
       if (prevTarget !== (closest as Interactable).info.title) {
         // if this is a new target, we reset the action
         this.scene.registry.set("action", "");

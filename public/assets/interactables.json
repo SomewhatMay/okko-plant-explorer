@@ -3,7 +3,7 @@
     "imageKey": "sweetgrass",
     "imageUrl": "assets/sweetgrass.png",
     "scale": 1,
-    "interactionDistance": 1,
+    "interactionDistance": 100,
     "distanceVariance": [0.3, 0.6],
     "itemCountVariance": [2, 4],
 
@@ -43,7 +43,7 @@
     "imageKey": "stickman",
     "imageUrl": "assets/player-idle.png",
     "scale": 1,
-    "interactionDistance": 1,
+    "interactionDistance": 500,
     "distanceVariance": [0.3, 0.6],
     "itemCountVariance": [2, 4],
 

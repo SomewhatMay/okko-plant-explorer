@@ -57,7 +57,7 @@ export class Interactable {
       );
       this.worldDecoration.addToForegroundGroup(newImage);
 
-      if (i == 0) {
+      if (i === Math.round(count / 2)) {
         this.object = newImage;
       }
     }

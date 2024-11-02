@@ -21,6 +21,7 @@ export class InteractionListener {
         if (target !== "" && currentAction === "") {
           this.scene.registry.set("action", action);
 
+          const wasDiscovered = store.getDiscovered(target);
           const interactableInfo = (
             scene.registry.get("interactables") as InteractableInfo[]
           ).map((info) => {
@@ -36,7 +37,7 @@ export class InteractionListener {
           });
           scene.registry.set("interactables", interactableInfo);
 
-          if (store.getDiscovered(target) === 100) {
+          if (wasDiscovered !== 100 && store.getDiscovered(target) === 100) {
             notification.displayNotification(
               "You have discovered " + target + "!"
             );

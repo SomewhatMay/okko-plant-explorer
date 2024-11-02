@@ -19,7 +19,7 @@ export abstract class TreeContainer extends DecorationContainer {
   }
 
   create() {
-    this.populateTrees(15);
+    this.populateTrees(30);
   }
 
   createTree(x: number) {

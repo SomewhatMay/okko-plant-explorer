@@ -2,12 +2,15 @@ import { GameObjects, Scene } from "phaser";
 import { screenSize } from "../../../constants";
 import { GrassContainer } from "../world-decoration/grass-container";
 import { WorldDecoration } from "../world-decoration";
+import { getRandomFloat, getRandomInt } from "../../../util";
 
 export type InteractableInfo = {
   imageKey: string;
   imageUrl: string;
-  xCoordinate: number;
   scale: number;
+  interactionDistance: number;
+  distanceVariance: [number, number];
+  itemCountVariance: [number, number];
 
   title: string;
   sourceUrl?: string;
@@ -28,15 +31,28 @@ export class Interactable {
   constructor(
     private scene: Scene,
     private worldDecoration: WorldDecoration,
-    public info: InteractableInfo
+    public info: InteractableInfo,
+    xCoordinate: number
   ) {
-    for (let i = -1; i < 2; i++) {
+    const count = getRandomInt(
+      info.itemCountVariance[0],
+      info.itemCountVariance[1] + 1
+    );
+    for (let i = 0; i < count; i++) {
+      const intraInteractableDist = getRandomFloat(
+        info.distanceVariance[0],
+        info.distanceVariance[1]
+      );
       const newImage = this.scene.add
         .image(0, 0, this.info.imageKey)
         .setOrigin(0, 1)
         .setScale(this.info.scale);
       newImage.setPosition(
-        this.info.xCoordinate + i * newImage.width * this.info.scale,
+        xCoordinate +
+          (i - (count - 1) / 2) *
+            newImage.width *
+            this.info.scale *
+            intraInteractableDist,
         screenSize.y - GrassContainer.grassSize.y
       );
       this.worldDecoration.addToForegroundGroup(newImage);

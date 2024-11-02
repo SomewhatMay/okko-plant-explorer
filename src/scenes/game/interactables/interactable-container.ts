@@ -12,6 +12,7 @@ export class InteractableContainer {
   interactionListener: InteractionListener;
   interactableInfo: InteractableInfo[] = [];
   interactables: Interactable[] = [];
+  worldDecoration: WorldDecoration;
 
   /**
    * This class is created before preload!
@@ -36,11 +37,8 @@ export class InteractableContainer {
     notification: Notification,
     worldDecoration: WorldDecoration
   ) {
-    this.interactableInfo.forEach((info) => {
-      this.interactables.push(
-        new Interactable(this.scene, worldDecoration, info)
-      );
-    });
+    this.worldDecoration = worldDecoration;
+    this.populateInteractables(100);
 
     this.interactionListener = new InteractionListener(
       this.scene,
@@ -48,6 +46,17 @@ export class InteractableContainer {
       store,
       notification
     );
+  }
+
+  populateInteractables(count: number) {
+    for (let i = 0; i < count; i += 1 + Math.random()) {
+      this.interactableInfo.forEach((info) => {
+        this.interactables.push(
+          new Interactable(this.scene, this.worldDecoration, info, i * 500)
+        );
+        i += (info.itemCountVariance[1] * info.distanceVariance[1]) / 2;
+      });
+    }
   }
 
   update() {

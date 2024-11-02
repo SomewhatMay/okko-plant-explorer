@@ -7,16 +7,13 @@ import { DecorationContainer } from "./decoration-container";
 export class MountainContainer extends DecorationContainer {
   static mountainScale = 3.5;
 
-  constructor(
-    scene: MainGame,
-    mountainGroup: Physics.Arcade.StaticGroup
-  ) {
+  constructor(scene: MainGame, mountainGroup: Physics.Arcade.StaticGroup) {
     super(scene, mountainGroup);
     this.scene.textures
       .get("mountain")
       .setFilter(Phaser.Textures.FilterMode.NEAREST);
 
-    this.populateMountains(10);
+    this.populateMountains(4);
   }
 
   createMountain(x: number) {

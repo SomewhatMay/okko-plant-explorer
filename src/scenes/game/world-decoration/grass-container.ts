@@ -10,7 +10,7 @@ export class GrassContainer extends DecorationContainer {
 
   constructor(scene: MainGame, worldGroup: Physics.Arcade.StaticGroup) {
     super(scene, worldGroup);
-    this.populateGrass(800);
+    this.populateGrass(500);
     this.scene.textures
       .get("grass")
       .setFilter(Phaser.Textures.FilterMode.NEAREST);

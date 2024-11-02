@@ -21,7 +21,7 @@ export class InfoDisplay extends UIContainer {
   draw() {
     this.clear();
     this.drawRoundRect(0, 0, InfoDisplay.WIDTH, 195);
-    this.drawText(InfoDisplay.WIDTH / 2, 10, "Observing").setOrigin(0.5, 0);
+    this.drawText(InfoDisplay.WIDTH / 2, 10, "Examining...").setOrigin(0.5, 0);
     this.drawText(InfoDisplay.WIDTH / 2, 30, "[ESC] Go Back", 12).setOrigin(
       0.5,
       0
@@ -37,7 +37,10 @@ export class InfoDisplay extends UIContainer {
       this.drawText(
         InfoDisplay.WIDTH / 2,
         lineY + 4,
-        (this.store.getInfo(target) as never)[action as never]
+        (this.store.getInfo(target) as never)[action as never],
+        undefined,
+        undefined,
+        InfoDisplay.WIDTH - 32
       ).setOrigin(0.5, 0);
     }
   }

@@ -5,7 +5,7 @@ import { TreeContainer } from "./tree-container";
 export class TreeContainer1 extends TreeContainer {
   constructor(scene: MainGame, treeGroup: Physics.Arcade.StaticGroup) {
     super(scene, treeGroup);
-    this.treeScale = 8;
+    this.treeScale = 9;
     this.create();
   }
 }

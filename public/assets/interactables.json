@@ -1,15 +1,15 @@
 [
   {
-    "imageKey": "player-idle",
-    "imageUrl": "assets/player-idle.png",
+    "imageKey": "sweetgrass",
+    "imageUrl": "assets/sweetgrass.png",
     "scale": 1,
     "xCoordinate": 150,
 
-    "title": "Title",
+    "title": "Sweetgrass",
     "sourceUrl": "https://example.com",
-    "observe": "This is a cool thing",
-    "touch": "This is what it feels like",
-    "smell": "I smell something",
+    "observe": "Long, silky, and elegant strands that are lustrous and green. Gentle, thin, yet resilient, swaying harmoniously with the wind and sparkling against the sunlight.",
+    "touch": "Every strand feels smooth yet subtly textured. Firm, but gentle―the balance of strength and softness felt as you glide your fingers across the cool surface.",
+    "smell": "A faint gentle sweet aroma, similar to a vanilla smell. A welcoming smell, filling your nose with comfort and sweetness that remains even after you pull away.",
 
     "discovered": {
       "observe": false,

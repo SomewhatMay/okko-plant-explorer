@@ -19,7 +19,7 @@ export abstract class TreeContainer extends DecorationContainer {
   }
 
   create() {
-    this.populateTrees(100);
+    this.populateTrees(15);
   }
 
   createTree(x: number) {
@@ -39,7 +39,7 @@ export abstract class TreeContainer extends DecorationContainer {
   }
 
   populateTrees(width: number) {
-    for (let i = -1; i < width - 1; i += 0.5 + Math.random() * 1.5) {
+    for (let i = -1; i < width - 1; i += 2 + Math.random()) {
       this.createTree(i);
     }
   }

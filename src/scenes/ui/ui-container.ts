@@ -68,7 +68,8 @@ export abstract class UIContainer {
     y: number,
     text: string,
     fontSize: number = 16,
-    color: string = "black"
+    color: string = "black",
+    wordWrap: number = Number.MAX_SAFE_INTEGER
   ) {
     const textObj = this.scene.add.text(
       x + this.offsetX,
@@ -77,6 +78,7 @@ export abstract class UIContainer {
       {
         fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',
         fontSize: fontSize + "px",
+        wordWrap: { width: wordWrap },
       }
     );
     textObj.setColor(color);

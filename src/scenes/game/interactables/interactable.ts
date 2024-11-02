@@ -30,15 +30,21 @@ export class Interactable {
     private worldDecoration: WorldDecoration,
     public info: InteractableInfo
   ) {
-    this.object = this.scene.add
-      .image(
-        this.info.xCoordinate,
-        screenSize.y - GrassContainer.grassSize.y,
-        this.info.imageKey
-      )
-      .setOrigin(0, 1)
-      .setScale(this.info.scale);
-    this.worldDecoration.addToForegroundGroup(this.object);
+    for (let i = -1; i < 2; i++) {
+      const newImage = this.scene.add
+        .image(0, 0, this.info.imageKey)
+        .setOrigin(0, 1)
+        .setScale(this.info.scale);
+      newImage.setPosition(
+        this.info.xCoordinate + i * newImage.width * this.info.scale,
+        screenSize.y - GrassContainer.grassSize.y
+      );
+      this.worldDecoration.addToForegroundGroup(newImage);
+
+      if (i == 0) {
+        this.object = newImage;
+      }
+    }
   }
 
   getX() {

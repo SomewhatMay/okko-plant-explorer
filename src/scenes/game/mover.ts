@@ -7,7 +7,7 @@ export class Mover {
 
   worldPos = 0; // player oriented
   lowerWorldBound = -1e3; // px, exclusive
-  upperWorldBound = 1e5; // px, exclusive
+  upperWorldBound = 4e4; // px, exclusive
 
   constructor(
     private inputHandler: InputHandler,

@@ -5,7 +5,7 @@ import { InteractableInfo } from "../game/interactables";
 import { Store } from "../game/store";
 
 export class Menu extends UIContainer {
-  static readonly WIDTH = 200;
+  static readonly WIDTH = 225;
 
   private lineY: number;
 
@@ -22,8 +22,8 @@ export class Menu extends UIContainer {
 
   draw() {
     this.clear();
-    this.drawRoundRect(0, 0, Menu.WIDTH, 195);
-    this.drawText(Menu.WIDTH / 2, 10, "Item:").setOrigin(0.5, 0);
+    this.drawRoundRect(0, 0, Menu.WIDTH, 200);
+    this.drawText(Menu.WIDTH / 2, 10, "Item:", 19).setOrigin(0.5, 0);
 
     const target = this.store.get("target");
     if (target !== "") {
@@ -33,18 +33,19 @@ export class Menu extends UIContainer {
       const discovered = this.store.getDiscovered(target);
       this.drawText(
         Menu.WIDTH / 2,
-        26 + 4,
+        32,
         discovered == 100 ? info.title : "?????????",
-        24
+        28
       ).setOrigin(0.5, 0);
       this.drawText(
         Menu.WIDTH / 2,
-        26 + 4 + 24 + 4,
-        "Discovered: " + discovered + "%"
+        26 + 4 + 28 + 4,
+        "Discovered: " + discovered + "%",
+        18
       ).setOrigin(0.5, 0);
     }
 
-    this.lineY = 26 + 4 + 24 + 4 + 24 + 2;
+    this.lineY = 26 + 4 + 24 + 4 + 24 + 8;
     this.drawLine(16, this.lineY, Menu.WIDTH - 16, this.lineY);
 
     this.drawAction("[E] Observe", 0);
@@ -67,7 +68,7 @@ export class Menu extends UIContainer {
   }
 
   drawAction(title: string, n: number) {
-    this.drawText(Menu.WIDTH / 2, this.lineY + 8 + n * 30, title, 20).setOrigin(
+    this.drawText(Menu.WIDTH / 2, this.lineY + 8 + n * 30, title, 22).setOrigin(
       0.5,
       0
     );

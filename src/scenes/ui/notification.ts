@@ -3,7 +3,7 @@ import { Game as MainGame } from "../game/index";
 import { screenSize } from "../../constants";
 
 export class Notification extends UIContainer {
-  static readonly WIDTH = 325;
+  static readonly WIDTH = 400;
   static readonly HEIGHT = 50;
 
   private messageIndex = 0;

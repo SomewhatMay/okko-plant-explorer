@@ -28,9 +28,6 @@ export class InteractableContainer {
     // Load all interactable sprites
     this.interactableInfo.forEach((info) => {
       this.scene.load.image(info.imageKey, info.imageUrl);
-      console.log(
-        "Loading image key " + info.imageKey + " with url " + info.imageUrl
-      );
     });
   }
 

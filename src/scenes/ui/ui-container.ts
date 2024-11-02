@@ -1,4 +1,4 @@
-import { GameObjects, Scene } from "phaser";
+import { GameObjects } from "phaser";
 import { Game as MainGame } from "../game/";
 
 export abstract class UIContainer {
@@ -67,7 +67,7 @@ export abstract class UIContainer {
     x: number,
     y: number,
     text: string,
-    fontSize: number = 16,
+    fontSize: number = 24,
     color: string = "black",
     wordWrap: number = Number.MAX_SAFE_INTEGER
   ) {

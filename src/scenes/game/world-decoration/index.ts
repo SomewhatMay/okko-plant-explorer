@@ -29,4 +29,8 @@ export class WorldDecoration {
 			})
 		});
 	}
+	
+	addToWorldGroup() {
+		
+	}
 }

@@ -1,4 +1,4 @@
-import { GameObjects, Physics, Scene } from "phaser";
+import { GameObjects, Scene } from "phaser";
 // import {
 //   GrassContainer,
 //   MountainContainer,

@@ -3,6 +3,7 @@ import { Store } from "../store";
 import { Interactable, InteractableInfo } from "./interactable";
 import { InteractionListener } from "./interaction-listener";
 import { Notification } from "../../ui/notification";
+import { WorldDecoration } from "../world-decoration";
 
 /**
  * See note on constructor
@@ -33,10 +34,14 @@ export class InteractableContainer {
     });
   }
 
-  create(store: Store, notification: Notification) {
+  create(
+    store: Store,
+    notification: Notification,
+    worldDecoration: WorldDecoration
+  ) {
     this.interactableInfo.forEach((info) => {
       this.interactables.push(
-        new Interactable(this.scene, this.scene.worldGroup, info)
+        new Interactable(this.scene, worldDecoration, info)
       );
     });
 

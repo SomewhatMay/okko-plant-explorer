@@ -1,4 +1,4 @@
-import { Physics, Scene } from "phaser";
+import { Physics } from "phaser";
 import { Game as MainGame } from "../index";
 import { screenSize } from "../../../constants";
 import { Math as pMath } from "phaser";
@@ -8,10 +8,7 @@ const { Vector2 } = pMath;
 export class GrassContainer extends DecorationContainer {
   static grassSize = new Vector2(150, 150); // px
 
-  constructor(
-    scene: MainGame,
-    worldGroup: Physics.Arcade.StaticGroup
-  ) {
+  constructor(scene: MainGame, worldGroup: Physics.Arcade.StaticGroup) {
     super(scene, worldGroup);
     this.populateGrass(800);
     this.scene.textures

@@ -1,36 +1,54 @@
-import { Physics } from "phaser";
+import { GameObjects, Physics } from "phaser";
 import { Game as MainGame } from "../index";
 import { DecorationContainer } from "./decoration-container";
 import { GrassContainer } from "./grass-container";
 import { MountainContainer } from "./mountain-container";
 import { TreeContainer } from "./tree-container";
 
+type ContainerInfo = {
+  speedMultiplier: number;
+  /**
+   * The multiplier for the speed of the container,
+   * in relation to Mover.playerSpeed.
+   */
+  class: typeof DecorationContainer;
+};
+
 type DecorationInfo = {
-	instance: DecorationContainer,
-	group: Physics.Arcade.StaticGroup
-}
+  instance: DecorationContainer;
+  group: Physics.Arcade.StaticGroup;
+  speedMultiplier: number;
+};
 
 export class WorldDecoration {
-	decorationContainers = [
-		GrassContainer,
-		MountainContainer,
-		TreeContainer
-	]
+  FOREGROUND_CLASS = GrassContainer;
+  foregroundGroup: Physics.Arcade.StaticGroup;
 
-	decorationInfos: DecorationInfo[] = [];
+  decorationContainers: ContainerInfo[] = [
+    { speedMultiplier: 1, class: GrassContainer },
+    { speedMultiplier: 0.075, class: MountainContainer },
+    { speedMultiplier: 0.125, class: TreeContainer },
+  ];
 
-	constructor(private scene: MainGame) {
-		this.decorationContainers.forEach((container) => {
-			const staticGroup = scene.physics.add.staticGroup();
-			const instance = new container(scene, staticGroup);
-			this.decorationInfos.push({
-				instance,
-				group: staticGroup
-			})
-		});
-	}
-	
-	addToWorldGroup() {
-		
-	}
+  decorationInfos: DecorationInfo[] = [];
+
+  constructor(scene: MainGame) {
+    this.decorationContainers.forEach((containerInfo) => {
+      const staticGroup = scene.physics.add.staticGroup();
+      const instance = new containerInfo.class(scene, staticGroup);
+      this.decorationInfos.push({
+        instance,
+        group: staticGroup,
+        speedMultiplier: containerInfo.speedMultiplier,
+      });
+
+      if (containerInfo.class == this.FOREGROUND_CLASS) {
+        this.foregroundGroup = staticGroup;
+      }
+    });
+  }
+
+  addToForegroundGroup(object: GameObjects.Image) {
+    this.foregroundGroup.add(object);
+  }
 }

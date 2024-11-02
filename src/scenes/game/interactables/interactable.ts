@@ -1,6 +1,7 @@
-import { GameObjects, Physics, Scene } from "phaser";
+import { GameObjects, Scene } from "phaser";
 import { screenSize } from "../../../constants";
 import { GrassContainer } from "../world-decoration/grass-container";
+import { WorldDecoration } from "../world-decoration";
 
 export type InteractableInfo = {
   imageKey: string;
@@ -26,7 +27,7 @@ export class Interactable {
 
   constructor(
     private scene: Scene,
-    private worldGroup: Physics.Arcade.StaticGroup,
+    private worldDecoration: WorldDecoration,
     public info: InteractableInfo
   ) {
     this.object = this.scene.add
@@ -37,7 +38,7 @@ export class Interactable {
       )
       .setOrigin(0, 1)
       .setScale(this.info.scale);
-    this.worldGroup.add(this.object);
+    this.worldDecoration.addToForegroundGroup(this.object);
   }
 
   getX() {

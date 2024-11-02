@@ -70,5 +70,6 @@ export class Game extends Scene {
     this.mover.update(_, delta);
     this.ui.update(_, delta);
     this.interactableContainer.update();
+    this.worldDecoration.update(_, delta);
   }
 }

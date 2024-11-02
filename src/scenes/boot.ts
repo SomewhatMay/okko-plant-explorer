@@ -13,10 +13,18 @@ export class Boot extends Scene {
     this.load.image("grass-side-view", "assets/grass-block.webp");
     this.load.image("grass", "assets/grass.png");
     this.load.image("mountain", "assets/mountain.png");
-    this.load.image("tree0", "assets/tree0.png");
-    this.load.image("tree1", "assets/tree1.png");
-    this.load.image("tree2", "assets/tree2.png");
-    this.load.image("tree3", "assets/tree3.png");
+    this.load.image("sun", "assets/sun.png");
+
+    // load trees
+    for (let i = 0; i < 4; i++) {
+      this.load.image("tree" + i, "assets/tree" + i + ".png");
+    }
+
+    // load clouds
+    for (let i = 0; i < 6; i++) {
+      this.load.image("cloud" + i, "assets/cloud" + i + ".png");
+    }
+
     // this.load.image("player-idle", "assets/player-idle.png");
     this.load.spritesheet("player", "assets/stickman-sprites.png", {
       frameWidth: 128,

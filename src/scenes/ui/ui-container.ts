@@ -26,10 +26,12 @@ export abstract class UIContainer {
     height: number,
     fillColor: number = 0xffffff,
     strokeColor: number = 0x000000,
-    radius: number = 20
+    radius: number = 20,
+    thickness: number = 1,
+    alpha: number = 1
   ) {
-    this.graphics.lineStyle(2, strokeColor, 1);
-    this.graphics.fillStyle(fillColor, 1);
+    this.graphics.lineStyle(thickness, strokeColor, alpha);
+    this.graphics.fillStyle(fillColor, alpha);
     this.graphics.fillRoundedRect(
       x + this.offsetX,
       y + this.offsetY,
@@ -97,5 +99,9 @@ export abstract class UIContainer {
 
   setVisible(visible: boolean) {
     this.layer.visible = visible;
+  }
+
+  getVisible() {
+    return this.layer.visible;
   }
 }

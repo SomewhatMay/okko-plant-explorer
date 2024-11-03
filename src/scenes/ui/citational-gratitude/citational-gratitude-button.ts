@@ -42,12 +42,6 @@ export class CitationalGratitudeButton extends UIContainer {
       this.draw();
     });
 
-    // scene.input.addListener("pointerup", () => {
-    //   if (this.mainWindow.getVisible()) {
-    //     this.mainWindow.setVisible(false);
-    //   }
-    // });
-
     this.draw();
   }
 

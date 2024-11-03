@@ -1,3 +1,6 @@
+Below is a comprehensive list of the sources of all images used in the production version of this game.
+View the `src/scenes/ui/citational-gratitude/gratitude.ts` for the citational gratitude.
+
 minecraft grass sprites - https://minecraft.fandom.com/wiki/List_of_block_textures
 stickman figures - https://www.deviantart.com/turboignited/art/Stickman-Spritesheet-691692371
 mountain sprite - https://www.deviantart.com/jonata-d/art/Mountain-Sprite-001-706211298

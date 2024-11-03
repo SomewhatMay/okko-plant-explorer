@@ -73,19 +73,60 @@ export abstract class UIContainer {
     color: string = "black",
     wordWrap: number = Number.MAX_SAFE_INTEGER
   ) {
-    const textObj = this.scene.add.text(
-      x + this.offsetX,
-      y + this.offsetY,
-      text,
-      {
+    const textObj = this.scene.add
+      .text(x + this.offsetX, y + this.offsetY, text, {
         fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',
         fontSize: fontSize + "px",
         wordWrap: { width: wordWrap },
-      }
-    );
-    textObj.setColor(color);
+      })
+      .setColor(color);
     this.children.push(textObj);
     this.layer.add(textObj);
+
+    return textObj;
+  }
+
+  drawTextButton(
+    x: number,
+    y: number,
+    text: string,
+    onClick?: () => void,
+    onHoverBegan?: () => void,
+    onHoverEnded?: () => void,
+    fondSize: number = 24,
+    color: string = "black",
+    addToScene: boolean = true
+  ) {
+    const textObj = new Phaser.GameObjects.Text(
+      this.scene,
+      this.offsetX + x,
+      this.offsetY + y,
+      text,
+      {
+        fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',
+        fontSize: fondSize + "px",
+      }
+    )
+      .setColor(color)
+      .setInteractive();
+
+    if (addToScene) {
+      this.scene.add.existing(textObj);
+    }
+    this.children.push(textObj);
+    this.layer.add(textObj);
+
+    if (onClick || onHoverBegan || onHoverEnded) {
+      if (onClick) {
+        textObj.on("pointerdown", onClick);
+      }
+      if (onHoverBegan) {
+        textObj.on("pointerover", onHoverBegan);
+      }
+      if (onHoverEnded) {
+        textObj.on("pointerout", onHoverEnded);
+      }
+    }
 
     return textObj;
   }

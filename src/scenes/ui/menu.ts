@@ -52,7 +52,11 @@ export class Menu extends UIContainer {
     this.drawAction("[E] Observe", 0);
     this.drawAction("[F] Touch", 1);
     this.drawAction("[Q] Smell", 2);
-    this.drawAction("[R] Research " + (discovered === 100 ? "🔓" : "🔒"), 3);
+    this.drawAction(
+      "[R] Research " + (discovered === 100 ? "" : "🔒"),
+      3,
+      discovered !== 100
+    );
   }
 
   subscribeToEvents() {
@@ -69,11 +73,14 @@ export class Menu extends UIContainer {
     this.store.changed("interactables", updateVisibility);
   }
 
-  drawAction(title: string, n: number) {
-    this.drawText(Menu.WIDTH / 2, this.lineY + 8 + n * 30, title, 22).setOrigin(
-      0.5,
-      0
-    );
+  drawAction(title: string, n: number, disabled: boolean = false) {
+    this.drawText(
+      Menu.WIDTH / 2,
+      this.lineY + 8 + n * 30,
+      title,
+      22,
+      disabled ? "gray" : "black"
+    ).setOrigin(0.5, 0);
   }
 
   update() {

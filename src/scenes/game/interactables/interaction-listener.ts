@@ -17,6 +17,16 @@ export class InteractionListener {
         const currentAction = this.scene.registry.get("action");
 
         if (target !== "" && currentAction === "") {
+          // if researching, ensure the interactable is discovered
+          if (action === "research") {
+            if (store.getDiscovered(target) !== 100) {
+              notification.displayNotification(
+                "You must discover ?????? before you can research it!"
+              );
+              return;
+            }
+          }
+
           this.scene.registry.set("action", action);
 
           const wasDiscovered = store.getDiscovered(target);

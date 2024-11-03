@@ -6,15 +6,17 @@ import { gratitude, imageSources } from "./gratitude";
 export class MainWindow extends UIContainer {
   static readonly WIDTH = 600;
   static readonly HEIGHT = 605;
-  alreadyDrawn: boolean = false;
 
   constructor(scene: MainGame) {
     super(
       scene,
       screenSize.x / 2 - MainWindow.WIDTH / 2,
-      screenSize.y / 2 - 150 - MainWindow.HEIGHT / 2
+      screenSize.y / 2 - MainWindow.HEIGHT / 2
     );
+
+    this.layer.setDepth(100);
     this.draw();
+
     this.setVisible(false);
   }
 

@@ -47,7 +47,8 @@ export class Interactable {
       const newImage = this.scene.add
         .image(0, 0, this.info.imageKey)
         .setOrigin(0, 1)
-        .setScale(this.info.scale);
+        .setScale(this.info.scale + (Math.random() - 0.5) * 0.125);
+      newImage.flipX = Math.random() < 0.5;
       newImage.setPosition(
         xCoordinate +
           (i - (count - 1) / 2) *

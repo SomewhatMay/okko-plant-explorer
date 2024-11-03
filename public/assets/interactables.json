@@ -3,16 +3,58 @@
     "imageKey": "sweetgrass",
     "imageUrl": "assets/sweetgrass.png",
     "scale": 1,
-    "interactionDistance": 100,
+    "interactionDistance": 200,
     "distanceVariance": [0.3, 0.6],
     "itemCountVariance": [2, 4],
 
     "title": "Sweetgrass",
     "sourceUrl": "https://example.com",
-    "observe": "Long, silky, and elegant strands that are lustrous and green. Gentle, thin, yet resilient, swaying harmoniously with the wind and sparkling against the sunlight. ",
+    "observe": "Long, silky, and elegant strands that are lustrous and green. Gentle, thin, yet resilient, swaying harmoniously with the wind and sparkling against the sunlight.",
     "touch": "Every strand feels smooth yet subtly textured. Firm, but gentle―the balance of strength and softness felt as you glide your fingers across the cool surface.",
-    "smell": "A faint gentle sweet aroma, similar to a vanilla smell. A welcoming smell, filling your nose with comfort and sweetness that remains even after you pull away.",
-    "research": "Woah, cool!",
+    "smell": "A faint gentle sweet aroma, similar to a vanilla smell. A welcoming smell fills your nose with comfort and sweetness that remains even after you pull away.",
+    "research": "Sweetgrass is a sacred plant in many Indigenous cultures. It is often used in purification ceremonies, believed to be effective at attracting positive energy. It is sometimes offered during prayer and is often beautifully braided. The plant is also sometimes burned to be used as a smudge for many rituals that facilitate healing and cleaning. Some use sweetgrass for other reasons too, such as potpourri, making strong baskets, and even medicinal teas. Sweetgrass is an elegant and vital multipurpose plant that has been used by many Indigenous communities for centuries.",
+
+    "discovered": {
+      "observe": false,
+      "touch": false,
+      "smell": false
+    }
+  },
+  {
+    "imageKey": "tobacco",
+    "imageUrl": "assets/tobacco.png",
+    "scale": 0.5,
+    "interactionDistance": 250,
+    "distanceVariance": [0.45, 0.55],
+    "itemCountVariance": [2, 4],
+
+    "title": "Tobacco",
+    "sourceUrl": "https://example.com",
+    "observe": "Standing tall with large and vibrant green leaves. Soft, rustling against the gentle breeze but firm in the soil beneath. Layered leaves, almost like fireworks, peeking out. The leaves illustrate a collaborative pattern as they grow in formation.",
+    "touch": "Rough, firm, leaves, slightly sticky but without residue. Older leaves on the bottom are slightly dryer and feel crispier than the freshly grown ones.",
+    "smell": "A rich earthy warm smell, slightly of timber and spices. An unforgettable aroma filled with calmness and peace.",
+    "research": "As a sacred plant in many Indigenous cultures, Tobacco serves as a bridge to the spiritual world. Ceremonial tobacco is very different from commercial tobacco. Ceremonial tobacco, unlike commercial tobacco, is not smoked. It is rather burned during certain ceremonies, but not inhaled. Sometimes dried and burned tobacco leaves are used for smudging, which is said to allow spirits to bring healing powers and remove negative energy. Many other ceremonies incorporate tobacco by placing it on the ground, or in the water as a form of showing gratitude and thanks to the spirits.",
+
+    "discovered": {
+      "observe": false,
+      "touch": false,
+      "smell": false
+    }
+  },
+  {
+    "imageKey": "sage",
+    "imageUrl": "assets/sage.png",
+    "scale": 0.25,
+    "interactionDistance": 300,
+    "distanceVariance": [0.5, 0.6],
+    "itemCountVariance": [4, 8],
+
+    "title": "Sage",
+    "sourceUrl": "https://example.com",
+    "observe": "Silvery-green leaves that grow in small clusters, like a small family. A compact, yet open and outgoing structure, with edges that slightly curl in, softly catching sunlight and water. ",
+    "touch": "A balance somewhere between soft and fuzzy―a gentle flex that feels both strong and delicate. Tender but stable leaves that radiate a cool and fresh feeling.",
+    "smell": "A warm and exciting aroma―a sharp fresh and minty smell. Earthy―a herbaceous scent, slightly pungent, filling the air with clarity",
+    "research": "Sage is a versatile plant that has been used in many Indigenous rituals for centuries. In many Indigenous cultures, sage is used in medicine pouches, ward off bad spirits, purify people, and foster healing and calming. Sage is sometimes used to begin a ceremony, purifying the body, mind, and soul of all attendants. In other ceremonies, it is used as an offering during prayers, with the belief that it serves as a barrier that prevents negative spirits from attacking the room. Sage has also been scientifically “verified” to be effective at healing, as it contains certain polyphenols which are natural antioxidants that protect from toxins and infectious organisms in the environment.",
 
     "discovered": {
       "observe": false,

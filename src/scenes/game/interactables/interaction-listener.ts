@@ -48,6 +48,7 @@ export class InteractionListener {
     createInteraction("E", "observe");
     createInteraction("F", "touch");
     createInteraction("Q", "smell");
+    createInteraction("R", "research");
 
     scene.input.keyboard?.on("keydown", (event: any) => {
       if (event.key == "Escape") {

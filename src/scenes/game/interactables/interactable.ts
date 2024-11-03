@@ -17,6 +17,7 @@ export type InteractableInfo = {
   observe: string;
   touch: string;
   smell: string;
+  research: string;
 
   discovered: {
     observe: boolean;

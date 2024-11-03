@@ -1,11 +1,11 @@
 import { Physics } from "phaser";
-import { Game as MainGame } from "../../index";
-import { DecorationContainer } from "../decoration-container";
-import { screenSize } from "../../../../constants";
+import { Game as MainGame } from "../index";
+import { DecorationContainer } from "./decoration-container";
+import { screenSize } from "../../../constants";
 
-export abstract class CloudContainer extends DecorationContainer {
-  cloudScale = 1;
-  cloudSpeed = 0.15;
+export class CloudContainer extends DecorationContainer {
+  cloudScale = 8;
+  cloudSpeed = 0.01;
 
   // static scaleVariation = 3; // deviation from treeScale (subtraction or addition)
   static cloudCount = 6; // number of tree textures labeled as "tree{n}" [0, n)
@@ -20,9 +20,6 @@ export abstract class CloudContainer extends DecorationContainer {
         .get("cloud" + i)
         .setFilter(Phaser.Textures.FilterMode.NEAREST);
     }
-  }
-
-  create() {
     this.populateClouds(10);
   }
 

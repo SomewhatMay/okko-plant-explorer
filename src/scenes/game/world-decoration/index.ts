@@ -8,7 +8,7 @@ import {
   TreeContainer2,
   TreeContainer3,
 } from "./tree-containers";
-import { CloudContainer1 } from "./cloud-containers";
+import { CloudContainer } from "./cloud-container";
 import { screenSize } from "../../../constants";
 
 type ContainerInfo = {
@@ -30,11 +30,11 @@ export class WorldDecoration {
   FOREGROUND_CLASS = GrassContainer;
   foregroundGroup: Physics.Arcade.StaticGroup;
 
-  CLOUD_CLASS = CloudContainer1;
-  cloudContainer: CloudContainer1;
+  CLOUD_CLASS = CloudContainer;
+  cloudContainer: CloudContainer;
 
   decorationContainers: ContainerInfo[] = [
-    { speedMultiplier: 0.025, class: CloudContainer1 },
+    { speedMultiplier: 0.025, class: CloudContainer },
     { speedMultiplier: 1, class: GrassContainer },
     { speedMultiplier: 0.075, class: MountainContainer },
     { speedMultiplier: 0.15, class: TreeContainer3 }, // farther ones should be drawn first
@@ -59,7 +59,7 @@ export class WorldDecoration {
       if (containerInfo.class == this.FOREGROUND_CLASS) {
         this.foregroundGroup = staticGroup;
       } else if (containerInfo.class == this.CLOUD_CLASS) {
-        this.cloudContainer = instance as CloudContainer1;
+        this.cloudContainer = instance as CloudContainer;
       }
     });
   }

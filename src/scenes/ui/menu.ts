@@ -22,15 +22,16 @@ export class Menu extends UIContainer {
 
   draw() {
     this.clear();
-    this.drawRoundRect(0, 0, Menu.WIDTH, 200);
+    this.drawRoundRect(0, 0, Menu.WIDTH, 230);
     this.drawText(Menu.WIDTH / 2, 10, "Item:", 19).setOrigin(0.5, 0);
+    let discovered = 0;
 
     const target = this.store.get("target");
     if (target !== "") {
       const info = this.store.getInfo(
         target as string
       ) as unknown as InteractableInfo;
-      const discovered = this.store.getDiscovered(target);
+      discovered = this.store.getDiscovered(target);
       this.drawText(
         Menu.WIDTH / 2,
         32,
@@ -51,6 +52,7 @@ export class Menu extends UIContainer {
     this.drawAction("[E] Observe", 0);
     this.drawAction("[F] Touch", 1);
     this.drawAction("[Q] Smell", 2);
+    this.drawAction("[R] Research " + (discovered === 100 ? "🔓" : "🔒"), 3);
   }
 
   subscribeToEvents() {

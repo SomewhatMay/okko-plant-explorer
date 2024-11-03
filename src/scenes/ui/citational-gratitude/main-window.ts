@@ -100,7 +100,7 @@ export class MainWindow extends UIContainer {
     const statementText = this.drawText(
       55,
       sourcesY + 18,
-      "This project is fully open-source. You can explore the code, artist statement, as well as learn about the author of this project on the Github:",
+      "This project is fully open-source. You can explore the code, more sources, artist statement, as well as learn about the author of this project on the GitHub:",
       18,
       undefined,
       MainWindow.WIDTH - 96

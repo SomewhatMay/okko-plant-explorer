@@ -1,5 +1,5 @@
 export const gratitude =
-  "Most of the images used in this game are open source. I show gratitude to all the developers and designers behind the art used in this game, as they are the only reason this dream and mission was able to come to life. Their carefully curated illustrations and creativity have been invaluable. ";
+  "Most of the images used in this game are open source. I show gratitude t0o all the developers and designers behind the art used in this game, as they are the only reason this dream and mission was able to come to life. Their carefully curated illustrations and creativity have been invaluable in the making of this project. ";
 
 export const imageSources = {
   "minecraft grass sprites":

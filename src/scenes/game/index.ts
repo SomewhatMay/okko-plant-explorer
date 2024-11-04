@@ -61,6 +61,12 @@ export class Game extends Scene {
       this.ui.notification,
       this.worldDecoration
     );
+
+    // moving the player to the center of the world once
+    // all interactables have been loaded
+    this.mover.moveWorld(
+      -(this.mover.upperWorldBound + this.mover.lowerWorldBound) / 2
+    );
   }
 
   update(_: number, delta: number): void {

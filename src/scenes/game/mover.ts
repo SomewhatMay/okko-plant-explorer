@@ -12,9 +12,7 @@ export class Mover {
   constructor(
     private inputHandler: InputHandler,
     private worldDecoration: WorldDecoration
-  ) {
-    this.moveWorld(-(this.upperWorldBound + this.lowerWorldBound) / 2);
-  }
+  ) {}
 
   moveWorld(offset: number) {
     this.worldPos -= offset;

@@ -2,7 +2,7 @@
 
 Learn about traditionally significant plants in Indigenous cultures through an interactive experience.
 
-[Click here to play!](somewhatmay.github.io/okko-plant-explorer/)
+[Click here to play!](https://www.somewhatmay.github.io/okko-plant-explorer/)
 
 ### Artist Statement
 

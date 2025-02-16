@@ -10,7 +10,7 @@ The NBE3UO Course allowed me to explore the text in mediums other than just writ
 
 ### Author Biography
 
-Umayeer Ahsan is a Bengali-born grade 11 student at Bloor Collegiate Institute in Toronto, Ontario. In his free time, he enjoys spending time with his friends at parks, playing games, and programming. Programming has been a passion of his since he was in elementary school, always trying to take every opportunity to code and design meaningful software. He enjoys developing interactive and educational experiences that allow users to participate in activities that would otherwise be inaccessible.
+Umayeer Ahsan is a student who loves interacive experiences. In his free time, he enjoys spending time with his friends at parks, playing games, and programming. Programming has been a passion of his since he was in elementary school, always trying to take every opportunity to code and design meaningful software. He enjoys developing interactive and educational experiences that allow users to participate in activities that would otherwise be inaccessible.
 
 ### Citations
 
